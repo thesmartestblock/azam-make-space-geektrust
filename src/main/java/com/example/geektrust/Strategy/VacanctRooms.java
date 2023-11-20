@@ -8,6 +8,7 @@ import com.example.geektrust.DTO.Slot;
 public class VacanctRooms {
 
     private final List<MeetingRoom> rooms;
+    private static final String NO_ROOMS = "NO_VACANT_ROOM";
 
     public VacanctRooms(List<MeetingRoom> rooms) {
         this.rooms = rooms;
@@ -17,7 +18,7 @@ public class VacanctRooms {
         try {
             slot.isValidTimeCheck();
         }catch (Exception e){
-            return "NO_VACANT_ROOM";
+            return NO_ROOMS;
         }
         StringBuilder sb = new StringBuilder();
 
@@ -26,8 +27,8 @@ public class VacanctRooms {
                     sb.append(room.getRoomName()).append(" ");
             }
 
-        if(sb.length() == 0){
-            return "NO_VACANT_ROOM";
+        if(sb.length()==0){
+            return NO_ROOMS;
         }
         return sb.toString().trim();
     }

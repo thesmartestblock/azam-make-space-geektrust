@@ -45,9 +45,7 @@ public class MeetingRoomService {
 
     public void vacancyCheck(List<String> tokens) {
         try {
-            String[] start1 = tokens.get(1).split(":");
-            String[] end1 = tokens.get(2).split(":");
-            Slot check = new Slot(LocalTime.of(Integer.parseInt(start1[0]), Integer.parseInt(start1[1])), LocalTime.of(Integer.parseInt(end1[0]), Integer.parseInt(end1[1])));
+            Slot check = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
             String vacancy = vacanctRooms.checkVacancy(check);
             System.out.println(vacancy);
         } catch (Exception e) {

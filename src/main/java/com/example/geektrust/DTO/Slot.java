@@ -4,12 +4,15 @@ import java.time.LocalTime;
 
 public class Slot {
 
+    private static final String INVALID_INPUT = "INCORRECT_INPUT";
+
+
     LocalTime start;
     LocalTime end;
 
     public Slot(LocalTime start, LocalTime end) {
         if (start.isAfter(end) || start.getMinute() % 15 != 0 || end.getMinute() % 15 != 0) {
-            throw new IllegalArgumentException("INCORRECT_INPUT");
+            throw new IllegalArgumentException(INVALID_INPUT);
         }
         this.start = start;
         this.end = end;
@@ -79,7 +82,7 @@ public class Slot {
         LocalTime lastPermittedTime = LocalTime.of(lastPermittedTimeHour, lastPermittedTimeMinute);
 
         if (this.end.isAfter(lastPermittedTime)) {
-            throw new IllegalArgumentException("INCORRECT_INPUT");
+            throw new IllegalArgumentException(INVALID_INPUT);
 
         }
 
@@ -88,13 +91,8 @@ public class Slot {
         Slot bufferTime3 = new Slot(LocalTime.parse("18:45"), LocalTime.parse("19:00"));
 
         if (bufferTime1.isOverlapping(this) || bufferTime2.isOverlapping(this) || bufferTime3.isOverlapping(this))
-            throw new IllegalArgumentException("INCORRECT_INPUT");
+            throw new IllegalArgumentException(INVALID_INPUT);
 
-    }
-
-    @Override
-    public String toString() {
-        return "Slot [start=" + start + ", end=" + end + "]";
     }
 
 }
