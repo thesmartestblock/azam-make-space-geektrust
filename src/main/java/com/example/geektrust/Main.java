@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import com.example.geektrust.Services.MeetingRoomService;
+import com.example.geektrust.Config.ApplicationConfig;
+import com.example.geektrust.Config.CommandInvoker;
 
 public class Main {
-    private static final MeetingRoomService service = new MeetingRoomService();
+    private static final ApplicationConfig config = new ApplicationConfig();
     public static void main(String[] args) {
         
         try {
@@ -19,26 +20,12 @@ public class Main {
             while (sc.hasNextLine()) {
                 String inputLine = sc.nextLine();
                 List<String> tokens = Arrays.stream(inputLine.split(" ")).collect(Collectors.toList());
-                run(tokens);
+                CommandInvoker invoker = config.getCommandInvoker();
+                invoker.executeCommand(tokens.get(0),tokens);
             }
             sc.close(); // closes the scanner
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
     }
-    
-    private static void run(List<String> tokens) {
-        switch (tokens.get(0)) {
-            case "BOOK":
-                    service.bookMeetingRoom(tokens);
-                break;
-            case "VACANCY":
-                    service.vacancyCheck(tokens);
-                break;
-            default:
-                System.out.println("INVALID_INPUT");
-                break;
-        }
-    }
-
 }

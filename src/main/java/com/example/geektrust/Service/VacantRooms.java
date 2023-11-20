@@ -1,16 +1,16 @@
-package com.example.geektrust.Strategy;
+package com.example.geektrust.Service;
 
 import java.util.List;
 
 import com.example.geektrust.DTO.MeetingRoom;
 import com.example.geektrust.DTO.Slot;
 
-public class VacanctRooms {
+public class VacantRooms implements IVacantRooms {
 
     private final List<MeetingRoom> rooms;
     private static final String NO_ROOMS = "NO_VACANT_ROOM";
 
-    public VacanctRooms(List<MeetingRoom> rooms) {
+    public VacantRooms(List<MeetingRoom> rooms) {
         this.rooms = rooms;
     }
 

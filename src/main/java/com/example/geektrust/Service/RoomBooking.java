@@ -1,22 +1,22 @@
-package com.example.geektrust.Strategy;
+package com.example.geektrust.Service;
 
 import com.example.geektrust.DTO.MeetingRoom;
 import com.example.geektrust.DTO.Slot;
 
 import java.util.List;
 
-public class FirstComeFirstServe implements RoomBookingStrategy {
+public class RoomBooking implements IRoomBooking {
 
     private static final String NO_ROOMS = "NO_VACANT_ROOM";
 
     private final List<MeetingRoom> rooms;
 
-    public FirstComeFirstServe(List<MeetingRoom> rooms) {
+    public RoomBooking(List<MeetingRoom> rooms) {
         this.rooms = rooms;
     }
 
     @Override
-    public String BookRoom(Slot newSlot, int capacity) {
+    public String bookRoom(Slot newSlot, int capacity) {
         checkCapacity(capacity);
         newSlot.isValidTimeCheck();
         return allocateRoom(newSlot,capacity);
