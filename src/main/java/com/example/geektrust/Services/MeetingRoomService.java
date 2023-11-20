@@ -1,14 +1,14 @@
 package com.example.geektrust.Services;
 
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
-
 import com.example.geektrust.DTO.MeetingRoom;
 import com.example.geektrust.DTO.Slot;
 import com.example.geektrust.Strategy.FirstComeFirstServe;
 import com.example.geektrust.Strategy.RoomBookingStrategy;
 import com.example.geektrust.Strategy.VacanctRooms;
+
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 public class MeetingRoomService {
 
@@ -29,11 +29,11 @@ public class MeetingRoomService {
         this.vacanctRooms = new VacanctRooms(rooms);
     }
 
-    public void bookMeetingRoom(List<String> tokens){
+    public void bookMeetingRoom(List<String> tokens) {
         try {
             String[] start1 = tokens.get(1).split(":");
             String[] end1 = tokens.get(2).split(":");
-            Slot newSlot = new Slot(LocalTime.of(Integer.parseInt(start1[0]), Integer.parseInt(start1[1])),LocalTime.of(Integer.parseInt(end1[0]), Integer.parseInt(end1[1])));
+            Slot newSlot = new Slot(LocalTime.of(Integer.parseInt(start1[0]), Integer.parseInt(start1[1])), LocalTime.of(Integer.parseInt(end1[0]), Integer.parseInt(end1[1])));
             newSlot.isValidTimeCheck();
             int capacity = Integer.parseInt(tokens.get(3));
             String roomAllocated = bookingStrategy.BookRoom(newSlot, capacity);
@@ -43,11 +43,11 @@ public class MeetingRoomService {
         }
     }
 
-    public void vacancyCheck(List<String> tokens){
+    public void vacancyCheck(List<String> tokens) {
         try {
             String[] start1 = tokens.get(1).split(":");
             String[] end1 = tokens.get(2).split(":");
-            Slot check = new Slot(LocalTime.of(Integer.parseInt(start1[0]), Integer.parseInt(start1[1])),LocalTime.of(Integer.parseInt(end1[0]), Integer.parseInt(end1[1])));
+            Slot check = new Slot(LocalTime.of(Integer.parseInt(start1[0]), Integer.parseInt(start1[1])), LocalTime.of(Integer.parseInt(end1[0]), Integer.parseInt(end1[1])));
             String vacancy = vacanctRooms.checkVacancy(check);
             System.out.println(vacancy);
         } catch (Exception e) {

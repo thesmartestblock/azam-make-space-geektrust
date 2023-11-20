@@ -29,7 +29,6 @@ public class VacanctRooms {
         if(sb.length() == 0){
             return "NO_VACANT_ROOM";
         }
-//        sb.;
         return sb.toString().trim();
     }
 }

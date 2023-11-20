@@ -15,7 +15,7 @@ public class FirstComeFirstServe implements RoomBookingStrategy {
 
     @Override
     public String BookRoom(Slot newSlot, int capacity) {
-        if (capacity < 2 || capacity > 20)
+        if (checkCapacity(capacity))
             throw new IllegalArgumentException("NO_VACANT_ROOM");
         newSlot.isValidTimeCheck();
         for(MeetingRoom room : rooms){
@@ -24,6 +24,14 @@ public class FirstComeFirstServe implements RoomBookingStrategy {
             }
         }
         return "NO_VACANT_ROOM";
+    }
+
+    private boolean checkCapacity(int capacity){
+
+        int maxCapacityAllowed=20;
+        int minCapacityAllowed=2;
+        return capacity < minCapacityAllowed || capacity > maxCapacityAllowed;
+
     }
 
 }

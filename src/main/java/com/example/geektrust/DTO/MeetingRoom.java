@@ -5,9 +5,9 @@ import java.util.TreeSet;
 
 public class MeetingRoom {
 
-    private int capacity;
-    private String roomName;
-    private TreeSet<Slot> repo;
+    private final int capacity;
+    private final String roomName;
+    private final TreeSet<Slot> repo;
 
     public MeetingRoom(int capacity, String roomName) {
         this.capacity = capacity;

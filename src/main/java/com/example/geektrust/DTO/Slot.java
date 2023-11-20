@@ -74,7 +74,9 @@ public class Slot {
     }
     public void isValidTimeCheck() {
 
-        LocalTime lastPermittedTime = LocalTime.of(23, 45);
+        int lastPermittedTimeHour = 23;
+        int lastPermittedTimeMinute = 45;
+        LocalTime lastPermittedTime = LocalTime.of(lastPermittedTimeHour, lastPermittedTimeMinute);
 
         if (this.end.isAfter(lastPermittedTime)) {
             throw new IllegalArgumentException("INCORRECT_INPUT");
