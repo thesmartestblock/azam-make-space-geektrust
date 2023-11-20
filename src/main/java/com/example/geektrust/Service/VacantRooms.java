@@ -4,22 +4,17 @@ import java.util.List;
 
 import com.example.geektrust.DTO.MeetingRoom;
 import com.example.geektrust.DTO.Slot;
+import com.example.geektrust.Exceptions.NoRoomsException;
 
 public class VacantRooms implements IVacantRooms {
 
     private final List<MeetingRoom> rooms;
-    private static final String NO_ROOMS = "NO_VACANT_ROOM";
 
     public VacantRooms(List<MeetingRoom> rooms) {
         this.rooms = rooms;
     }
 
-    public String checkVacancy(Slot slot) {
-        try {
-            slot.isValidTimeCheck();
-        }catch (Exception e){
-            return NO_ROOMS;
-        }
+    public String checkVacancy(Slot slot) throws NoRoomsException {
         StringBuilder sb = new StringBuilder();
 
             for (MeetingRoom room : rooms) {
@@ -28,7 +23,7 @@ public class VacantRooms implements IVacantRooms {
             }
 
         if(sb.length()==0){
-            return NO_ROOMS;
+            throw new NoRoomsException();
         }
         return sb.toString().trim();
     }

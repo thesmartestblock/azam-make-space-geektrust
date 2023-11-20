@@ -16,6 +16,7 @@ public class VacancyCheckCommand implements ICommand{
     public void execute(List<String> tokens) {
         try {
             Slot check = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
+            check.isValidTimeCheck();
             String vacancy = service.checkVacancy(check);
             System.out.println(vacancy);
         } catch (Exception e) {

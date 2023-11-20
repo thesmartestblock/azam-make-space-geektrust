@@ -1,21 +1,26 @@
 package com.example.geektrust.DTO;
 
+import com.example.geektrust.Exceptions.InvalidInputException;
+import com.example.geektrust.Exceptions.NoRoomsException;
+
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Slot {
-
-    private static final String INVALID_INPUT = "INCORRECT_INPUT";
-
 
     LocalTime start;
     LocalTime end;
 
-    public Slot(LocalTime start, LocalTime end) {
-        if (start.isAfter(end) || start.getMinute() % 15 != 0 || end.getMinute() % 15 != 0) {
-            throw new IllegalArgumentException(INVALID_INPUT);
-        }
+    public Slot(LocalTime start, LocalTime end) throws InvalidInputException {
+        validtime(start, end);
         this.start = start;
         this.end = end;
+    }
+
+    private static void validtime(LocalTime start, LocalTime end) throws InvalidInputException {
+        if (start.isAfter(end) || start.getMinute() % 15 != 0 || end.getMinute() % 15 != 0) {
+            throw new InvalidInputException();
+        }
     }
 
     public LocalTime getStart() {
@@ -28,11 +33,7 @@ public class Slot {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((start == null) ? 0 : start.hashCode());
-        result = prime * result + ((end == null) ? 0 : end.hashCode());
-        return result;
+        return Objects.hash(getStart(), getEnd());
     }
 
     @Override
@@ -75,14 +76,14 @@ public class Slot {
     private boolean theEqualStartEnd(Slot check){
         return check.getStart().equals(start) || check.getEnd().equals(end);
     }
-    public void isValidTimeCheck() {
+    public void isValidTimeCheck() throws NoRoomsException, InvalidInputException {
 
         int lastPermittedTimeHour = 23;
         int lastPermittedTimeMinute = 45;
         LocalTime lastPermittedTime = LocalTime.of(lastPermittedTimeHour, lastPermittedTimeMinute);
 
         if (this.end.isAfter(lastPermittedTime)) {
-            throw new IllegalArgumentException(INVALID_INPUT);
+            throw new NoRoomsException();
 
         }
 
@@ -91,7 +92,7 @@ public class Slot {
         Slot bufferTime3 = new Slot(LocalTime.parse("18:45"), LocalTime.parse("19:00"));
 
         if (bufferTime1.isOverlapping(this) || bufferTime2.isOverlapping(this) || bufferTime3.isOverlapping(this))
-            throw new IllegalArgumentException(INVALID_INPUT);
+            throw new NoRoomsException();
 
     }
 
