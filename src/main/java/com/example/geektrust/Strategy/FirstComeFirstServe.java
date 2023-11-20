@@ -19,16 +19,16 @@ public class FirstComeFirstServe implements RoomBookingStrategy {
     public String BookRoom(Slot newSlot, int capacity) {
         checkCapacity(capacity);
         newSlot.isValidTimeCheck();
+        return allocateRoom(newSlot,capacity);
+    }
+
+    private String allocateRoom(Slot newSlot, int capacity) {
         for (MeetingRoom room : rooms) {
-            if (canAllocateRoom(room, newSlot, capacity)) {
+            if (room.reserveSlot(newSlot, capacity)) {
                 return room.getRoomName();
             }
         }
         return NO_ROOMS;
-    }
-
-    private boolean canAllocateRoom(MeetingRoom room, Slot newSlot, int capacity) {
-        return room.reserveSlot(newSlot, capacity);
     }
 
     private void checkCapacity(int capacity) {
