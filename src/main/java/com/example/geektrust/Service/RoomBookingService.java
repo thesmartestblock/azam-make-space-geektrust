@@ -18,7 +18,7 @@ public class RoomBookingService implements IRoomBooking {
     @Override
     public String bookRoom(Slot newSlot, int capacity) throws NoRoomsException, InvalidInputException {
         checkCapacity(capacity);
-        newSlot.isValidTimeCheck();
+        TimeService.inBufferTime(newSlot);
         return allocateRoom(newSlot, capacity);
     }
 

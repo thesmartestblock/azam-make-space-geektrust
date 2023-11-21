@@ -1,6 +1,5 @@
 package com.example.geektrust.CommandTest;
 
-        import com.example.geektrust.Commands.BookRoomCommand;
         import com.example.geektrust.Commands.VacancyCheckCommand;
         import com.example.geektrust.DTO.Slot;
         import com.example.geektrust.Exceptions.InvalidInputException;
@@ -45,7 +44,7 @@ public class VacancyCheckCommandTest {
         tokens.add("10");
 
         Slot newSlot = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
-        newSlot.isValidTimeCheck();
+
         String expectedOutput = "C-Cave D-Tower G-Mansion\r\n";
 //        when(service.checkVacancy(newSlot)).thenReturn("C-Cave D-Tower G-Mansion");
 

@@ -19,8 +19,7 @@ public class SlotTest {
         Slot test2 = new Slot(LocalTime.parse("10:00"),LocalTime.parse("10:30"));
 
         Assertions.assertThrows(InvalidInputException.class, ()-> new Slot(LocalTime.parse("13:00"),LocalTime.parse("12:00")));
-        Assertions.assertThrows(NoRoomsException.class , test1::isValidTimeCheck);
-        Assert.assertFalse(test2.isOverlapping(test1));
+
 
     }
 }

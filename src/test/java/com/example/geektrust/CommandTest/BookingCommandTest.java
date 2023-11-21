@@ -2,15 +2,13 @@ package com.example.geektrust.CommandTest;
 
 import com.example.geektrust.Commands.BookRoomCommand;
 import com.example.geektrust.DTO.Slot;
+import com.example.geektrust.Service.TimeService;
 import com.example.geektrust.Exceptions.InvalidInputException;
 import com.example.geektrust.Exceptions.NoRoomsException;
 import com.example.geektrust.Service.IService;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -46,7 +44,7 @@ public class BookingCommandTest {
         tokens.add("10");
 
         Slot newSlot = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
-        newSlot.isValidTimeCheck();
+        TimeService.inBufferTime(newSlot);
         int capacity = Integer.parseInt(tokens.get(3));
         String expectedOutput = "D-Tower\r\n";
         when(service.bookRoom(newSlot,capacity)).thenReturn("D-Tower");

@@ -1,5 +1,8 @@
 package com.example.geektrust.DTO;
 
+import com.example.geektrust.Service.TimeService;
+
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.TreeSet;
 
@@ -24,7 +27,7 @@ public class MeetingRoom {
     }
 
     public boolean availableSlot(Slot check){
-        return repo.stream().noneMatch((s1) -> s1.isOverlapping(check));
+        return repo.stream().noneMatch((s1) -> TimeService.isOverlapping(Arrays.asList(s1,check)));
     }
 
     public boolean reserveSlot(Slot slot, int seats) {
