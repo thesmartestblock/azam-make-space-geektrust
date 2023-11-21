@@ -23,12 +23,8 @@ public class RoomBookingService implements IRoomBooking {
     }
 
     private String allocateRoom(Slot newSlot, int capacity) throws NoRoomsException {
-        for (MeetingRoom room : rooms) {
-            if (room.reserveSlot(newSlot, capacity)) {
-                return room.getRoomName();
-            }
-        }
-        throw new NoRoomsException();
+        return rooms.stream().filter((r)-> r.reserveSlot(newSlot,capacity)).findFirst()
+                .orElseThrow(NoRoomsException::new).getRoomName();
     }
 
     private void checkCapacity(int capacity) throws NoRoomsException {

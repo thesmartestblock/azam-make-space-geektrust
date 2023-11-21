@@ -24,7 +24,7 @@ public class RoomBookingServiceTest {
         roomBookingService = new RoomBookingService(rooms);
     }
     @Test
-    public void serviceTest() throws InvalidInputException, NoRoomsException {
+    public void edgeCasesOfRoomBookingService() throws InvalidInputException, NoRoomsException {
         Slot test1=new Slot(LocalTime.parse("09:00"),LocalTime.parse("10:30"));
         Slot test2=new Slot(LocalTime.parse("09:30"),LocalTime.parse("10:30"));
         Assertions.assertThrows(NoRoomsException.class,()->roomBookingService.bookRoom(test1,3));
