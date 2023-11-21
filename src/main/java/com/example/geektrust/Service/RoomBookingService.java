@@ -7,11 +7,11 @@ import com.example.geektrust.Exceptions.NoRoomsException;
 
 import java.util.List;
 
-public class RoomBooking implements IRoomBooking {
+public class RoomBookingService implements IRoomBooking {
 
     private final List<MeetingRoom> rooms;
 
-    public RoomBooking(List<MeetingRoom> rooms) {
+    public RoomBookingService(List<MeetingRoom> rooms) {
         this.rooms = rooms;
     }
 
@@ -35,7 +35,8 @@ public class RoomBooking implements IRoomBooking {
 
         int maxCapacityAllowed = 20;
         int minCapacityAllowed = 2;
-        if (capacity < minCapacityAllowed || capacity > maxCapacityAllowed) throw new NoRoomsException();
+        if (capacity < minCapacityAllowed || capacity > maxCapacityAllowed)
+            throw new NoRoomsException();
 
     }
 

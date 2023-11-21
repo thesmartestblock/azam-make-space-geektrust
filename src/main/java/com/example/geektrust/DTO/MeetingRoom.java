@@ -28,11 +28,8 @@ public class MeetingRoom {
     }
 
     public boolean reserveSlot(Slot slot, int seats) {
-        if (capacity < seats) {
-            return false;
-        }
-        if (availableSlot(slot) ) {
-            return  repo.add(slot);
+        if (capacity >= seats && availableSlot(slot) ) {
+            return repo.add(slot);
         }
         return false;
     }

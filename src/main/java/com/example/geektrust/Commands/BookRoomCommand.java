@@ -17,9 +17,12 @@ public class BookRoomCommand implements ICommand{
     @Override
     public void execute(List<String> tokens) {
         try {
-            Slot newSlot = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
+            int startTimeIndex = 1;
+            int endTimeIndex = 2;
+            Slot newSlot = new Slot(LocalTime.parse(tokens.get(startTimeIndex)), LocalTime.parse(tokens.get(endTimeIndex)));
             newSlot.isValidTimeCheck();
-            int capacity = Integer.parseInt(tokens.get(3));
+            int capacityIndex = 3;
+            int capacity = Integer.parseInt(tokens.get(capacityIndex));
             String roomAllocated = service.bookRoom(newSlot, capacity);
             System.out.println(roomAllocated);
         } catch (Exception e) {

@@ -6,8 +6,8 @@ import com.example.geektrust.Exceptions.NoRoomsException;
 
 public class Service implements IService{
 
-    private IRoomBooking roomBooking;
-    private IVacantRooms vacantRooms;
+    private final IRoomBooking roomBooking;
+    private final IVacantRooms vacantRooms;
 
     public Service(IRoomBooking roomBooking, IVacantRooms vacantRooms) {
         this.roomBooking = roomBooking;

@@ -15,8 +15,8 @@ public class ApplicationConfig {
     private static final MeetingRoom dTower = new MeetingRoom(7, "D-Tower");
     private static final MeetingRoom gMansion = new MeetingRoom(20, "G-Mansion");
     private static final List<MeetingRoom> rooms = Arrays.asList(cCave, dTower, gMansion);
-    private static final IRoomBooking bookingService =  new RoomBooking(rooms);
-    private static final IVacantRooms vacantRooms = new VacantRooms(rooms);
+    private static final IRoomBooking bookingService =  new RoomBookingService(rooms);
+    private static final IVacantRooms vacantRooms = new VacantRoomsService(rooms);
 
     private static final IService service = new Service(bookingService,vacantRooms);
     private static final ICommand bookingCommand = new BookRoomCommand(service);
