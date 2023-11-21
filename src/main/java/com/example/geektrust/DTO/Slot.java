@@ -38,24 +38,11 @@ public class Slot {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Slot other = (Slot) obj;
-        if (start == null) {
-            if (other.start != null)
-                return false;
-        } else if (!start.equals(other.start))
-            return false;
-        if (end == null) {
-            return other.end == null;
-        } else if (!end.equals(other.end))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Slot)) return false;
+        Slot slot = (Slot) o;
+        return Objects.equals(getStart(), slot.getStart()) && Objects.equals(getEnd(), slot.getEnd());
     }
 
     public boolean isOverlapping(Slot check){
