@@ -1,7 +1,6 @@
 package com.example.geektrust.Commands;
 
 import com.example.geektrust.DTO.Slot;
-import com.example.geektrust.Service.TimeService;
 import com.example.geektrust.Service.IService;
 
 import java.time.LocalTime;
@@ -19,7 +18,6 @@ public class VacancyCheckCommand implements ICommand{
             int startTimeIndex = 1;
             int endTimeIndex = 2;
             Slot check = new Slot(LocalTime.parse(tokens.get(startTimeIndex)), LocalTime.parse(tokens.get(endTimeIndex)));
-            TimeService.inBufferTime(check);
             String vacancy = service.checkVacancy(check);
             System.out.println(vacancy);
         } catch (Exception e) {

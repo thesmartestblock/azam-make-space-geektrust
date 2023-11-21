@@ -1,7 +1,6 @@
 package com.example.geektrust.Commands;
 
 import com.example.geektrust.DTO.Slot;
-import com.example.geektrust.Service.TimeService;
 import com.example.geektrust.Service.IService;
 
 import java.time.LocalTime;
@@ -21,7 +20,6 @@ public class BookRoomCommand implements ICommand{
             int startTimeIndex = 1;
             int endTimeIndex = 2;
             Slot newSlot = new Slot(LocalTime.parse(tokens.get(startTimeIndex)), LocalTime.parse(tokens.get(endTimeIndex)));
-            TimeService.inBufferTime(newSlot);
             int capacityIndex = 3;
             int capacity = Integer.parseInt(tokens.get(capacityIndex));
             String roomAllocated = service.bookRoom(newSlot, capacity);

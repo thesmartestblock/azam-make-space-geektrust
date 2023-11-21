@@ -2,7 +2,6 @@ package com.example.geektrust.CommandTest;
 
 import com.example.geektrust.Commands.BookRoomCommand;
 import com.example.geektrust.DTO.Slot;
-import com.example.geektrust.Service.TimeService;
 import com.example.geektrust.Exceptions.InvalidInputException;
 import com.example.geektrust.Exceptions.NoRoomsException;
 import com.example.geektrust.Service.IService;
