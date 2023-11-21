@@ -26,12 +26,14 @@ public class MeetingRoom {
         return roomName;
     }
 
-    public boolean availableSlot(Slot check){
-        return repo.stream().noneMatch((s1) -> TimeService.isOverlapping(Arrays.asList(s1,check)));
+    public boolean availableSlot(Slot check) {
+        return repo.stream().noneMatch((s1) -> TimeService.isOverlapping(Arrays.asList(s1, check)));
     }
 
     public boolean reserveSlot(Slot slot, int seats) {
-        if (capacity >= seats && availableSlot(slot) ) {
+        if (capacity >= seats)
+            return false;
+        if (availableSlot(slot)) {
             return repo.add(slot);
         }
         return false;

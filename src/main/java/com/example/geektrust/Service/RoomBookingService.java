@@ -18,12 +18,11 @@ public class RoomBookingService implements IRoomBooking {
     @Override
     public String bookRoom(Slot newSlot, int capacity) throws NoRoomsException, InvalidInputException {
         checkCapacity(capacity);
-        TimeService.inBufferTime(newSlot);
         return allocateRoom(newSlot, capacity);
     }
 
     private String allocateRoom(Slot newSlot, int capacity) throws NoRoomsException {
-        return rooms.stream().filter((r)-> r.reserveSlot(newSlot,capacity)).findFirst()
+        return rooms.stream().filter((r) -> r.reserveSlot(newSlot, capacity)).findFirst()
                 .orElseThrow(NoRoomsException::new).getRoomName();
     }
 
@@ -31,7 +30,9 @@ public class RoomBookingService implements IRoomBooking {
 
         int maxCapacityAllowed = 20;
         int minCapacityAllowed = 2;
-        if (capacity < minCapacityAllowed || capacity > maxCapacityAllowed)
+        if (capacity < minCapacityAllowed)
+            throw new NoRoomsException();
+        if (capacity > maxCapacityAllowed)
             throw new NoRoomsException();
 
     }

@@ -44,7 +44,6 @@ public class BookingCommandTest {
         tokens.add("10");
 
         Slot newSlot = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
-        TimeService.inBufferTime(newSlot);
         int capacity = Integer.parseInt(tokens.get(3));
         String expectedOutput = "D-Tower\r\n";
         when(service.bookRoom(newSlot,capacity)).thenReturn("D-Tower");

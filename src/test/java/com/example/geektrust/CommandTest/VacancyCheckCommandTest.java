@@ -46,7 +46,7 @@ public class VacancyCheckCommandTest {
         Slot newSlot = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
 
         String expectedOutput = "C-Cave D-Tower G-Mansion\r\n";
-//        when(service.checkVacancy(newSlot)).thenReturn("C-Cave D-Tower G-Mansion");
+        when(service.checkVacancy(newSlot)).thenReturn("C-Cave D-Tower G-Mansion");
 
 
         // Act
