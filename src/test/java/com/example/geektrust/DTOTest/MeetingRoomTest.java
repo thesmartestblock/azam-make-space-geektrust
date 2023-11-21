@@ -18,7 +18,7 @@ public class MeetingRoomTest {
         meetingRoom = new MeetingRoom(3,"C-Cave");
     }
     @Test
-    void meetingRoomTest() throws InvalidInputException {
+    void shouldThrowAndPassBasicTest() throws InvalidInputException {
         Slot test1= new Slot(LocalTime.parse("09:30"),LocalTime.parse("10:00"));
         String meetingRoomExpected = "C-Cave";
         Assert.assertEquals(meetingRoom.getRoomName(),meetingRoomExpected);

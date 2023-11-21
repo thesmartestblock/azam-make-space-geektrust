@@ -19,7 +19,13 @@ public class Slot {
 
     private static void validTime(LocalTime start, LocalTime end) throws InvalidInputException {
         int minDivisor = 15;
-        if (start.isAfter(end) || start.getMinute() % minDivisor != 0 || end.getMinute() % minDivisor != 0) {
+        if (start.isAfter(end))
+            throw new InvalidInputException();
+
+        if (start.getMinute() % minDivisor != 0)
+            throw new InvalidInputException();
+
+        if (end.getMinute() % minDivisor != 0) {
             throw new InvalidInputException();
         }
     }
@@ -45,7 +51,7 @@ public class Slot {
         return Objects.equals(getStart(), slot.getStart()) && Objects.equals(getEnd(), slot.getEnd());
     }
 
-    public boolean isOverlapping(Slot check){
+    public boolean isOverlapping(Slot check) {
         try {
             startOverlapping(check);
             endOverlapping(check);
@@ -53,39 +59,44 @@ public class Slot {
             subsetOverlap(check);
             theEqualStartEnd(check);
             return false;
-        }
-        catch (NoRoomsException e) {
+        } catch (NoRoomsException e) {
             return true;
         }
     }
+
     public void inBufferTime(Slot check) throws NoRoomsException {
-            startOverlapping(check);
-            endOverlapping(check);
-            completeOverlap(check);
-            subsetOverlap(check);
-            theEqualStartEnd(check);
+        startOverlapping(check);
+        endOverlapping(check);
+        completeOverlap(check);
+        subsetOverlap(check);
+        theEqualStartEnd(check);
     }
+
     private void startOverlapping(Slot check) throws NoRoomsException {
-        if(start.isBefore(check.getStart()) && end.isAfter(check.getStart()))
+        if (start.isBefore(check.getStart()) && end.isAfter(check.getStart()))
             throw new NoRoomsException();
     }
+
     private void endOverlapping(Slot check) throws NoRoomsException {
-        if(start.isBefore(check.getEnd()) && end.isAfter(check.getEnd()))
+        if (start.isBefore(check.getEnd()) && end.isAfter(check.getEnd()))
             throw new NoRoomsException();
     }
+
     private void completeOverlap(Slot check) throws NoRoomsException {
-        if(start.isBefore(check.getStart()) && end.isAfter(check.getEnd()))
+        if (start.isBefore(check.getStart()) && end.isAfter(check.getEnd()))
             throw new NoRoomsException();
     }
 
     private void subsetOverlap(Slot check) throws NoRoomsException {
-        if(check.getStart().isBefore(start) && check.getEnd().isAfter(end))
+        if (check.getStart().isBefore(start) && check.getEnd().isAfter(end))
             throw new NoRoomsException();
     }
+
     private void theEqualStartEnd(Slot check) throws NoRoomsException {
-        if(check.getStart().equals(start) || check.getEnd().equals(end))
+        if (check.getStart().equals(start) || check.getEnd().equals(end))
             throw new NoRoomsException();
     }
+
     public void isValidTimeCheck() throws NoRoomsException, InvalidInputException {
 
         int lastPermittedTimeHour = 23;

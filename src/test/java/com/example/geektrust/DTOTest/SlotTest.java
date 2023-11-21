@@ -14,7 +14,7 @@ import java.time.LocalTime;
 public class SlotTest {
 
     @Test
-    void slotTest() throws InvalidInputException {
+    void shouldThrowErrorAndoverrlap() throws InvalidInputException {
         Slot test1 = new Slot(LocalTime.parse("09:00"),LocalTime.parse("10:00"));
         Slot test2 = new Slot(LocalTime.parse("10:00"),LocalTime.parse("10:30"));
 
