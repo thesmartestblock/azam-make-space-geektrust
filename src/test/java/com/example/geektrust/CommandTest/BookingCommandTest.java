@@ -21,9 +21,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 public class BookingCommandTest {
-    @InjectMocks
+
     private BookRoomCommand bookRoomCommand;
-    @Mock
+
     private IService service;
 
     private final PrintStream standardOut = System.out;

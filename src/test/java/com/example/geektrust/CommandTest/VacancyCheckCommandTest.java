@@ -21,9 +21,8 @@ package com.example.geektrust.CommandTest;
         import static org.junit.jupiter.api.Assertions.assertEquals;
         import static org.mockito.Mockito.*;
 public class VacancyCheckCommandTest {
-    @InjectMocks
+
     private VacancyCheckCommand vacancyCheckCommand;
-    @Mock
     private IService service;
 
     private final PrintStream standardOut = System.out;
