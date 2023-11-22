@@ -1,24 +1,22 @@
 package com.example.geektrust.CommandTest;
 
-        import com.example.geektrust.Commands.VacancyCheckCommand;
-        import com.example.geektrust.DTO.Slot;
-        import com.example.geektrust.Exceptions.InvalidInputException;
-        import com.example.geektrust.Exceptions.NoRoomsException;
-        import com.example.geektrust.Service.IService;
-        import org.junit.jupiter.api.AfterEach;
-        import org.junit.jupiter.api.BeforeEach;
-        import org.junit.jupiter.api.Test;
-        import org.mockito.InjectMocks;
-        import org.mockito.Mock;
+import com.example.geektrust.Commands.VacancyCheckCommand;
+import com.example.geektrust.DTO.Slot;
+import com.example.geektrust.Exceptions.InvalidInputException;
+import com.example.geektrust.Exceptions.NoRoomsException;
+import com.example.geektrust.Service.IService;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-        import java.io.ByteArrayOutputStream;
-        import java.io.PrintStream;
-        import java.time.LocalTime;
-        import java.util.ArrayList;
-        import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
-        import static org.junit.jupiter.api.Assertions.assertEquals;
-        import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;
+
 public class VacancyCheckCommandTest {
 
     private VacancyCheckCommand vacancyCheckCommand;
@@ -56,6 +54,7 @@ public class VacancyCheckCommandTest {
 //        assertEquals(expectedOutput,outputStreamCaptor.toString());
         verify(service).checkVacancy(eq(newSlot));
     }
+
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);

@@ -1,27 +1,19 @@
 package com.example.geektrust.Service;
 
-import com.example.geektrust.DTO.MeetingRoom;
 import com.example.geektrust.DTO.Slot;
 import com.example.geektrust.Exceptions.NoRoomsException;
-
-import java.util.List;
+import com.example.geektrust.Repositories.IRepository;
 
 public class VacantRoomsService implements IVacantRooms {
 
-    private final List<MeetingRoom> rooms;
+    private final IRepository repository;
 
-    public VacantRoomsService(List<MeetingRoom> rooms) {
-        this.rooms = rooms;
+    public VacantRoomsService(IRepository repository) {
+        this.repository = repository;
     }
 
+
     public String checkVacancy(Slot slot) throws NoRoomsException {
-        StringBuilder sb = new StringBuilder();
-        for (MeetingRoom room : rooms) {
-            if (room.isVacant(slot))
-                sb.append(room.getRoomName()).append(" ");
-        }
-        String res = sb.toString().trim();
-        if(res.isEmpty()) throw new NoRoomsException();
-        return res;
+        return repository.checkVacancy(slot);
     }
 }

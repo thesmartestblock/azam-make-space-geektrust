@@ -22,7 +22,7 @@ public class MeetingRoomTest {
         Slot test1= new Slot(LocalTime.parse("09:30"),LocalTime.parse("10:00"));
         String meetingRoomExpected = "C-Cave";
         Assert.assertEquals(meetingRoom.getRoomName(),meetingRoomExpected);
-        Assert.assertTrue(meetingRoom.getCapacity() == 3);
+        Assert.assertEquals(3, meetingRoom.getCapacity());
     }
 
 }

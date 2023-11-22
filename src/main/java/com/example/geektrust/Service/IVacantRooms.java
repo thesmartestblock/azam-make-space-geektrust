@@ -6,5 +6,5 @@ import com.example.geektrust.Exceptions.NoRoomsException;
 
 public interface IVacantRooms{
 
-    public String checkVacancy(Slot slot) throws NoRoomsException, InvalidInputException;
+    String checkVacancy(Slot slot) throws NoRoomsException, InvalidInputException;
 }

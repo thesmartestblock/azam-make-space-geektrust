@@ -1,16 +1,14 @@
 package com.example.geektrust.DTO;
 
 import com.example.geektrust.Exceptions.InvalidInputException;
-import com.example.geektrust.Exceptions.NoRoomsException;
 
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.Objects;
 
-public class Slot{
+public class Slot {
 
-    private LocalTime start;
-    private LocalTime end;
+    private final LocalTime start;
+    private final LocalTime end;
 
     public Slot(LocalTime start, LocalTime end) throws InvalidInputException {
         validTime(start, end);
@@ -53,13 +51,13 @@ public class Slot{
     }
 
     public boolean hasOverlap(Slot newSlot) {
-        Slot s1 = compareTo(newSlot)?this:newSlot;
-        Slot s2 = !compareTo(newSlot)?this:newSlot;
+        Slot s1 = compareTo(newSlot) ? this : newSlot;
+        Slot s2 = !compareTo(newSlot) ? this : newSlot;
         return s1.getEnd().isAfter(s2.getStart());
     }
 
     public boolean compareTo(Slot newSlot) {
-        if (this.getStart().equals(newSlot.getStart()) ) {
+        if (this.getStart().equals(newSlot.getStart())) {
             return this.getEnd().isBefore(newSlot.getEnd());
         }
 

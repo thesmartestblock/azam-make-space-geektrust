@@ -1,23 +1,20 @@
 package com.example.geektrust;
 
-import com.example.geektrust.DTO.Slot;
-import junit.framework.Assert;
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.time.LocalTime;
 
 @DisplayName("Test")
 public class MainTest {
 
-    private PrintStream standardOut ;
+    private PrintStream standardOut;
     private ByteArrayOutputStream outputStreamCaptor;
 
 
     @BeforeEach
     public void setUp() {
-        standardOut= System.out;
+        standardOut = System.out;
         outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
     }

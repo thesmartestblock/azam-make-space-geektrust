@@ -1,35 +1,23 @@
 package com.example.geektrust.Service;
 
-import com.example.geektrust.DTO.MeetingRoom;
 import com.example.geektrust.DTO.Slot;
-import com.example.geektrust.Exceptions.InvalidInputException;
 import com.example.geektrust.Exceptions.NoRoomsException;
-
-import java.util.List;
+import com.example.geektrust.Repositories.IRepository;
 
 public class RoomBookingService implements IRoomBooking {
 
-    private final List<MeetingRoom> rooms;
+    private final IRepository repository;
 
-    public RoomBookingService(List<MeetingRoom> rooms) {
-        this.rooms = rooms;
+    public RoomBookingService(IRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public String bookRoom(Slot newSlot, int capacity) throws NoRoomsException, InvalidInputException {
+    public String bookRoom(Slot newSlot, int capacity) throws NoRoomsException {
         checkCapacity(capacity);
-        return allocateRoom(newSlot, capacity);
+        return repository.allocateRoom(newSlot, capacity);
     }
 
-    private String allocateRoom(Slot newSlot, int capacity) throws NoRoomsException {
-        checkCapacity(capacity);
-        for(MeetingRoom room : rooms){
-            if(room.bookRoom(newSlot,capacity)){
-                return room.getRoomName();
-            }
-        }
-        throw new NoRoomsException();
-    }
 
     private void checkCapacity(int capacity) throws NoRoomsException {
 

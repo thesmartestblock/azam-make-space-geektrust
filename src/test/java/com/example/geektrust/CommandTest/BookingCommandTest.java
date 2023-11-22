@@ -15,8 +15,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
+
 public class BookingCommandTest {
 
     private BookRoomCommand bookRoomCommand;
@@ -45,7 +45,7 @@ public class BookingCommandTest {
         Slot newSlot = new Slot(LocalTime.parse(tokens.get(1)), LocalTime.parse(tokens.get(2)));
         int capacity = Integer.parseInt(tokens.get(3));
         String expectedOutput = "D-Tower\r\n";
-        when(service.bookRoom(newSlot,capacity)).thenReturn("D-Tower");
+        when(service.bookRoom(newSlot, capacity)).thenReturn("D-Tower");
 
 
         // Act
@@ -55,6 +55,7 @@ public class BookingCommandTest {
 //        assertEquals(expectedOutput,outputStreamCaptor.toString());
         verify(service).bookRoom(eq(newSlot), eq(capacity));
     }
+
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);
