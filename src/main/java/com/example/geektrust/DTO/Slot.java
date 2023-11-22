@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Slot {
+public class Slot implements Comparable<Slot>{
 
     private LocalTime start;
     private LocalTime end;
@@ -52,4 +52,16 @@ public class Slot {
         return Objects.equals(getStart(), slot.getStart()) && Objects.equals(getEnd(), slot.getEnd());
     }
 
+    @Override
+    public int compareTo(Slot otherSlot) {
+        // Compare based on start times
+        int startComparison = this.getStart().compareTo(otherSlot.getStart());
+
+        // If start times are equal, compare based on end times
+        if (startComparison == 0) {
+            return this.getEnd().compareTo(otherSlot.getEnd());
+        }
+
+        return startComparison;
+    }
 }

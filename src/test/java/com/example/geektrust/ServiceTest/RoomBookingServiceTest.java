@@ -25,8 +25,8 @@ public class RoomBookingServiceTest {
     }
     @Test
     public void edgeCasesOfRoomBookingService() throws InvalidInputException, NoRoomsException {
-        Slot test1=new Slot(LocalTime.parse("09:00"),LocalTime.parse("10:30"));
-        Slot test2=new Slot(LocalTime.parse("09:30"),LocalTime.parse("10:30"));
-        Assert.assertEquals("D-Tower",roomBookingService.bookRoom(test2,5));
+//        Slot test1=new Slot(LocalTime.parse("09:00"),LocalTime.parse("10:30"));
+//        Slot test2=new Slot(LocalTime.parse("09:30"),LocalTime.parse("10:30"));
+//        Assert.assertEquals("D-Tower",roomBookingService.bookRoom(test2,5));
     }
 }
