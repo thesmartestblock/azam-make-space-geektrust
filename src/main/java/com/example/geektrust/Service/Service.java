@@ -37,14 +37,7 @@ public class Service implements IService{
         meetings.add(new Slot(LocalTime.parse("13:15"), LocalTime.parse("13:45")));
         meetings.add(new Slot(LocalTime.parse("18:45"), LocalTime.parse("19:00")));
 
-        meetings.add(check);
-        meetings.sort(Comparator.comparing(Slot::getStart));
-
-//        for (int i = 1; i < meetings.size(); i++) {
-//            if (meetings.get(i).getStart().isBefore(meetings.get(i - 1).getEnd())) {
-//                // Overlapping meetings found
-//                throw new NoRoomsException();
-//            }
-//        }
+        if(meetings.stream().anyMatch(s->s.hasOverlap(check)))
+            throw new NoRoomsException();
     }
 }

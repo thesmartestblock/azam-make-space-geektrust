@@ -15,5 +15,13 @@ public class VacantRoomsService implements IVacantRooms {
     }
 
     public String checkVacancy(Slot slot) throws NoRoomsException {
+        StringBuilder sb = new StringBuilder();
+        for (MeetingRoom room : rooms) {
+            if (room.isVacant(slot))
+                sb.append(room.getRoomName()).append(" ");
+        }
+        String res = sb.toString().trim();
+        if(res.isEmpty()) throw new NoRoomsException();
+        return res;
     }
 }

@@ -22,6 +22,13 @@ public class RoomBookingService implements IRoomBooking {
     }
 
     private String allocateRoom(Slot newSlot, int capacity) throws NoRoomsException {
+        checkCapacity(capacity);
+        for(MeetingRoom room : rooms){
+            if(room.bookRoom(newSlot,capacity)){
+                return room.getRoomName();
+            }
+        }
+        throw new NoRoomsException();
     }
 
     private void checkCapacity(int capacity) throws NoRoomsException {
