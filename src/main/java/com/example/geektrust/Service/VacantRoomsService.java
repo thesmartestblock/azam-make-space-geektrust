@@ -18,10 +18,8 @@ public class VacantRoomsService implements IVacantRooms {
         StringBuilder sb = new StringBuilder();
 
         for (MeetingRoom room : rooms) {
-            if (room.availableSlot(slot))
-                sb.append(room.getRoomName()).append(" ");
+                sb.append(room.hasVacantRoom(slot)).append(" ");
         }
-        //java 8 doesnot support .isEmpty() method for stringbuilder
         String res = sb.toString().trim();
         if (res.isEmpty()) {
             throw new NoRoomsException();

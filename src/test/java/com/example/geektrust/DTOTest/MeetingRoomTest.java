@@ -23,8 +23,6 @@ public class MeetingRoomTest {
         String meetingRoomExpected = "C-Cave";
         Assert.assertEquals(meetingRoom.getRoomName(),meetingRoomExpected);
         Assert.assertTrue(meetingRoom.getCapacity() == 3);
-        Assert.assertTrue(meetingRoom.reserveSlot(test1,2));
-        Assert.assertFalse(meetingRoom.reserveSlot(test1,4));
     }
 
 }
