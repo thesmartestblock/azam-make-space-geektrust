@@ -1,19 +1,18 @@
 package com.example.geektrust.Service;
 
-import com.example.geektrust.DTO.Slot;
+import com.example.geektrust.DTO.Booking;
+import com.example.geektrust.Exceptions.InvalidInputException;
 import com.example.geektrust.Exceptions.NoRoomsException;
 import com.example.geektrust.Repositories.IRepository;
 
-public class VacantRoomsService implements IVacantRooms {
+public class VacantRoomsService implements IVacantRoomsService {
+    private final IRepository repo;
 
-    private final IRepository repository;
-
-    public VacantRoomsService(IRepository repository) {
-        this.repository = repository;
+    public VacantRoomsService(IRepository repo) {
+        this.repo = repo;
     }
 
-
-    public String checkVacancy(Slot slot) throws NoRoomsException {
-        return repository.checkVacancy(slot);
+    public void checkVacancy(Booking check) throws NoRoomsException {
+        System.out.println(repo.checkVacancy(check));
     }
 }

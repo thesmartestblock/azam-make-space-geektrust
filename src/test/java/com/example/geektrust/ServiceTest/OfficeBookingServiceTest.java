@@ -3,7 +3,7 @@ package com.example.geektrust.ServiceTest;
 import com.example.geektrust.Service.RoomBookingService;
 import org.junit.jupiter.api.Test;
 
-public class RoomBookingServiceTest {
+public class OfficeBookingServiceTest {
 
     RoomBookingService roomBookingService;
 

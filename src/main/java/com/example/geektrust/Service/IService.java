@@ -1,5 +1,5 @@
 package com.example.geektrust.Service;
 
-public interface IService extends IRoomBooking, IVacantRooms {
+public interface IService extends IRoomBookingService, IVacantRoomsService {
 }
 

@@ -1,29 +1,25 @@
 package com.example.geektrust.Commands;
 
-import com.example.geektrust.DTO.Slot;
-import com.example.geektrust.Service.IService;
+import com.example.geektrust.DTO.Booking;
+import com.example.geektrust.Service.OfficeService;
 
-import java.time.LocalTime;
 import java.util.List;
 
-public class BookRoomCommand implements ICommand{
+public class BookRoomCommand implements ICommand {
 
-    private final IService service;
+    private final OfficeService service;
 
-    public BookRoomCommand(IService service) {
+    public BookRoomCommand(OfficeService service) {
         this.service = service;
     }
 
     @Override
     public void execute(List<String> tokens) {
         try {
-            int startTimeIndex = 1;
-            int endTimeIndex = 2;
-            Slot newSlot = new Slot(LocalTime.parse(tokens.get(startTimeIndex)), LocalTime.parse(tokens.get(endTimeIndex)));
-            int capacityIndex = 3;
-            int capacity = Integer.parseInt(tokens.get(capacityIndex));
-            String roomAllocated = service.bookRoom(newSlot, capacity);
-            System.out.println(roomAllocated);
+            Booking booking = new Booking();
+            booking.parse(tokens.get(1), tokens.get(2));
+            booking.setCapacity(tokens.get(3));
+            service.bookRoom(booking);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
