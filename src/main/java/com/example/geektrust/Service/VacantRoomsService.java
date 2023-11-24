@@ -1,18 +1,27 @@
 package com.example.geektrust.Service;
 
 import com.example.geektrust.DTO.Booking;
-import com.example.geektrust.Exceptions.InvalidInputException;
+import com.example.geektrust.DTO.MeetingOffice;
 import com.example.geektrust.Exceptions.NoRoomsException;
-import com.example.geektrust.Repositories.IRepository;
+
+import java.util.List;
 
 public class VacantRoomsService implements IVacantRoomsService {
-    private final IRepository repo;
+    private final List<MeetingOffice> offices;
 
-    public VacantRoomsService(IRepository repo) {
-        this.repo = repo;
+    public VacantRoomsService(List<MeetingOffice> offices) {
+        this.offices = offices;
     }
 
     public void checkVacancy(Booking check) throws NoRoomsException {
-        System.out.println(repo.checkVacancy(check));
+        StringBuilder sb = new StringBuilder();
+        for (MeetingOffice office : offices) {
+            if (office.isVacant(check)) {
+                sb.append(office.getRoomName()).append(" ");
+            }
+        }
+        String res = sb.toString().trim();
+        if (res.isEmpty()) throw new NoRoomsException();
+        System.out.println(res);
     }
 }
