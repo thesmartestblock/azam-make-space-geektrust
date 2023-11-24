@@ -34,12 +34,14 @@ public class Booking {
     }
 
     private void parseTime(String start, String end) {
+        int hourIndex=0;
+        int minIndex=1;
         String[] s = start.split(":");
-        startHour = Integer.parseInt(s[0]);
-        startMin = Integer.parseInt(s[1]);
+        startHour = Integer.parseInt(s[hourIndex]);
+        startMin = Integer.parseInt(s[minIndex]);
         String[] e = end.split(":");
-        endHour = Integer.parseInt(e[0]);
-        endMin = Integer.parseInt(e[1]);
+        endHour = Integer.parseInt(e[hourIndex]);
+        endMin = Integer.parseInt(e[minIndex]);
     }
 
     private void validTime(int startHour, int startMin, int endHour, int endMin) throws InvalidInputException {
@@ -72,7 +74,9 @@ public class Booking {
     }
 
     private boolean isInvalidCapacity() {
-        return capacity < 2 || capacity > 20;
+        int minCapacity = 2;
+        int maxCapacity = 20;
+        return capacity < minCapacity || capacity > maxCapacity;
     }
 
     private void validTime(int hour, int min) throws InvalidInputException {
@@ -81,11 +85,16 @@ public class Booking {
     }
 
     private boolean isInvalidHour(int hour) {
-        return hour < 0 || hour > 23;
+        int minHours = 0;
+        int maxHours = 23;
+        return hour < minHours || hour > maxHours;
     }
 
     private boolean isInvalidMinute(int min) {
-        return min < 0 || min > 45 || min % 15 != 0;
+        int minDivisor = 15;
+        int minMinutes = 0;
+        int maxMinutes = 45;
+        return min < minMinutes || min > maxMinutes || min % minDivisor != 0;
     }
 
     public boolean isOverlap(Booking check) {

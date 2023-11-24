@@ -4,6 +4,7 @@ import com.example.geektrust.Commands.BookRoomCommand;
 import com.example.geektrust.Commands.ICommand;
 import com.example.geektrust.Commands.VacancyCheckCommand;
 import com.example.geektrust.DTO.MeetingOffice;
+import com.example.geektrust.Repositories.IRepository;
 import com.example.geektrust.Repositories.OfficeRepository;
 import com.example.geektrust.Service.*;
 
@@ -18,11 +19,11 @@ public class Config {
     private static final List<MeetingOffice> offices = Arrays.asList(cCave, dTower, gMansion);
     private static final CommandInvoker commandInvoker = new CommandInvoker();
 
-    private static final OfficeRepository officeRepository = new OfficeRepository(offices);
+    private static final IRepository officeRepository = new OfficeRepository(offices);
     private static final IRoomBookingService roomBookingService = new RoomBookingService(officeRepository);
     private static final IVacantRoomsService vacantRoomsService = new VacantRoomsService(officeRepository);
 
-    private static final OfficeService service = new OfficeService(roomBookingService, vacantRoomsService);
+    private static final IService service = new OfficeService(roomBookingService, vacantRoomsService);
     private static final ICommand bookingCommand = new BookRoomCommand(service);
     private static final ICommand vacantCheckCommand = new VacancyCheckCommand(service);
 
