@@ -13,6 +13,7 @@ public class OfficeRepository implements IRepository {
         this.offices = offices;
     }
 
+    @Override
     public String allocateRoom(Booking newBooking) throws NoRoomsException {
         for (MeetingOffice office : offices) {
             if (office.bookRoom(newBooking)) {
@@ -22,6 +23,7 @@ public class OfficeRepository implements IRepository {
         throw new NoRoomsException();
     }
 
+    @Override
     public String checkVacancy(Booking check) throws NoRoomsException {
         StringBuilder sb = new StringBuilder();
         for (MeetingOffice office : offices) {
