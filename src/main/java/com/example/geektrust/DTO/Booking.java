@@ -27,6 +27,8 @@ public class Booking {
     public Booking parse(String start, String end) throws InvalidInputException, NoRoomsException {
         parseTime(start, end);
         validTime(startHour, startMin, endHour, endMin);
+        validTime(startHour,startMin);
+        validTime(endHour,endMin);
         checkBuffer();
         return this;
     }
