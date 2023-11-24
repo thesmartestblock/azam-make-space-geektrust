@@ -4,8 +4,7 @@ import com.example.geektrust.Commands.BookRoomCommand;
 import com.example.geektrust.Commands.ICommand;
 import com.example.geektrust.Commands.VacancyCheckCommand;
 import com.example.geektrust.DTO.MeetingOffice;
-import com.example.geektrust.Repositories.IRepository;
-import com.example.geektrust.Repositories.OfficeRepository;
+import com.example.geektrust.Repositories.*;
 import com.example.geektrust.Service.*;
 
 import java.util.Arrays;
@@ -18,8 +17,9 @@ public class Config {
     private static final MeetingOffice gMansion = new MeetingOffice(20, "G-Mansion");
     private static final List<MeetingOffice> offices = Arrays.asList(cCave, dTower, gMansion);
     private static final CommandInvoker commandInvoker = new CommandInvoker();
-
-    private static final IRepository officeRepository = new OfficeRepository(offices);
+    private static final IBookingRepo bookinRepo = new BookingRepo(offices);
+    private static final IVacantRoomRepo vacantRoomRepo = new VacantRoomRepo(offices);
+    private static final IRepository officeRepository = new OfficeRepository(bookinRepo,vacantRoomRepo);
     private static final IRoomBookingService roomBookingService = new RoomBookingService(officeRepository);
     private static final IVacantRoomsService vacantRoomsService = new VacantRoomsService(officeRepository);
 

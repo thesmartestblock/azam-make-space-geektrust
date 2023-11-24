@@ -7,33 +7,23 @@ import com.example.geektrust.Exceptions.NoRoomsException;
 import java.util.List;
 
 public class OfficeRepository implements IRepository {
-    private final List<MeetingOffice> offices;
+    private final IBookingRepo bookingRepo;
 
-    public OfficeRepository(List<MeetingOffice> offices) {
-        this.offices = offices;
+    private final IVacantRoomRepo vacantRoomRepo;
+
+    public OfficeRepository(IBookingRepo bookingRepo, IVacantRoomRepo vacantRoomRepo) {
+        this.bookingRepo=bookingRepo;
+        this.vacantRoomRepo=vacantRoomRepo;
     }
 
     @Override
     public String allocateRoom(Booking newBooking) throws NoRoomsException {
-        for (MeetingOffice office : offices) {
-            if (office.bookRoom(newBooking)) {
-                return office.getRoomName();
-            }
-        }
-        throw new NoRoomsException();
+        return bookingRepo.allocateRoom(newBooking);
     }
 
     @Override
     public String checkVacancy(Booking check) throws NoRoomsException {
-        StringBuilder sb = new StringBuilder();
-        for (MeetingOffice office : offices) {
-            if (office.isVacant(check)) {
-                sb.append(office.getRoomName()).append(" ");
-            }
-        }
-        String res = sb.toString().trim();
-        if (res.isEmpty()) throw new NoRoomsException();
-        return res;
+        return vacantRoomRepo.checkVacancy(check);
     }
 
 }
